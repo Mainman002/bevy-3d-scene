@@ -1,0 +1,26 @@
+[package]
+name = "hello_bevy"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[profile.dev]
+opt-level = 1
+strip = true
+
+[profile.dev.package."*"]
+opt-level = 3
+strip = true
+
+[profile.release]
+debug = false
+strip = true
+opt-level = 'z'
+codegen-units = 1
+lto = true
+panic = 'abort'
+
+[dependencies]
+bevy = {version = "0.11"}
+bevy_embedded_assets = {version = "0.8.0"}
