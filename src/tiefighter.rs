@@ -6,7 +6,7 @@ pub struct TiefighterPlugin;
 impl Plugin for TiefighterPlugin {
     fn build(&self, app: &mut App) {
         app.add_systems(Startup, setup);
-        app.add_systems(Update, rotate_tiefighter);
+        app.add_systems(Update, (rotate_tiefighter, _debug));
     }
 }
 
@@ -29,11 +29,24 @@ fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
 }
 
 // Rotate Tiefighter Entity
-fn rotate_tiefighter(mut query: Query<&mut Transform>, tiefighter: Res<Tiefighter>, time: Res<Time>) {
+fn rotate_tiefighter(
+    mut query: Query<&mut Transform>,
+    tiefighter: Res<Tiefighter>,
+    time: Res<Time>,
+) {
     if let Ok(mut transform) = query.get_component_mut::<Transform>(tiefighter.0) {
         transform.rotate_around(
             Vec3::ZERO,
             Quat::from_axis_angle(Vec3::Y, -8f32.to_radians() * time.delta_seconds()),
+        );
+    }
+}
+
+fn _debug(mut gizmos: Gizmos, mut query: Query<&mut Transform>, tiefighter: Res<Tiefighter>) {
+    if let Ok(transform) = query.get_component_mut::<Transform>(tiefighter.0) {
+        gizmos.cuboid(
+            transform.with_scale(Vec3::new(2.08, 2.4, 2.0)),
+            Color::GREEN,
         );
     }
 }
