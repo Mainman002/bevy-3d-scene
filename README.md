@@ -14,4 +14,5 @@ Then open a terminal in the downloaded folder and run this command
 cargo run
 ```
 
-![Screenshot 2023-10-10 at 11 09 30 AM](https://github.com/Mainman002/bevy-3d-scene/assets/11281480/65de0060-09c6-4cd2-8189-0dde525e4d38)
+![Screenshot 2023-10-11 at 1 15 24 PM](https://github.com/Mainman002/bevy-3d-scene/assets/11281480/a8a559c0-7684-41dc-8d02-be98b64026dd)
+
